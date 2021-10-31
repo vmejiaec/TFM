@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<script src="UIEngine.js"></script>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="_body_" class="screenBox">
+	<div class="GameMessage">
+		<p class="pStyle">Skelly te ayudará si le das un hueso.</p>
+		<br/><br/>
+		<button class="buttonStyle buttonSize" id="continue">Ok</button>
+	</div>
+</div>
+</body>
+
+<script type="text/javascript">
+
+    let scriptInterface = null;
+    engine.on("facet:updated:core.scripting", function (interface) {
+        scriptInterface = interface;
+    });
+    engine.trigger("facet:request", ["core.scripting"]);
+
+    const startButton = document.getElementById("continue");
+    startButton.addEventListener("click", function () {
+        scriptInterface.triggerEvent(
+            JSON.stringify({
+                "id": "SkellySetName"
+            })
+        );
+    });
+
+</script>
+</html>
